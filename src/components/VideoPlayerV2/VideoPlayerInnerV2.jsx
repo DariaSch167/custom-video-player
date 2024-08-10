@@ -1,9 +1,6 @@
 import React, { useRef } from "react";
-import video from "../../assets/video.mp4";
 import useVideoPlayer from "../../hooks/useVideoPlayer.js";
 import "./VideoPlayerV2.scss";
-// import backward from "../../images/player-icons/backward.svg";
-// import forward from "../../images/player-icons/forward.svg";
 import play from "../../images/player-icons/play.svg";
 import pause from "../../images/player-icons/pause.svg";
 import mute from "../../images/player-icons/mute.svg";
@@ -26,7 +23,7 @@ function VideoPlayer() {
       <div className="container">
         <div className="video-wrapper">
           <video
-            src={video}
+            src="https://www.dropbox.com/scl/fi/wju7gayfi0px8x1u4vcch/.mp4?rlkey=kv78rg1o21jzpueqjp5xpa3zl&st=h242md6n&dl=1"
             ref={videoElement}
             onTimeUpdate={handleOnTimeUpdate}
           />
