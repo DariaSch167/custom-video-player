@@ -37,6 +37,11 @@ function VideoPlayer() {
                 )}
               </button>
             </div>
+            <div>
+              <p>
+                {} / {}
+              </p>
+            </div>
             <input
               type="range"
               min="0"

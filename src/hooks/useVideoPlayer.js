@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 
-const useVideoPlayer = (videoElement) => {
+const useVideoPlayer = videoElement => {
   const [playerState, setPlayerState] = useState({
     isPlaying: false,
     progress: 0,
     speed: 1,
     isMuted: false,
+    isFullScreen: false,
   });
 
   const togglePlay = () => {
@@ -23,14 +24,16 @@ const useVideoPlayer = (videoElement) => {
 
   const handleOnTimeUpdate = () => {
     const progress =
-      (videoElement.current.currentTime / videoElement.current.duration) * 100;
+      (videoElement.current.currentTime /
+        videoElement.current.duration) *
+      100;
     setPlayerState({
       ...playerState,
       progress,
     });
   };
 
-  const handleVideoProgress = (event) => {
+  const handleVideoProgress = event => {
     const manualChange = Number(event.target.value);
     videoElement.current.currentTime =
       (videoElement.current.duration / 100) * manualChange;
@@ -40,7 +43,7 @@ const useVideoPlayer = (videoElement) => {
     });
   };
 
-  const handleVideoSpeed = (event) => {
+  const handleVideoSpeed = event => {
     const speed = Number(event.target.value);
     videoElement.current.playbackRate = speed;
     setPlayerState({
@@ -62,6 +65,16 @@ const useVideoPlayer = (videoElement) => {
       : (videoElement.current.muted = false);
   }, [playerState.isMuted, videoElement]);
 
+  const toggleFullScreen = () => {
+    setPlayerState({
+      ...playerState,
+      isFullScreen: !playerState.isFullScreen,
+    });
+    playerState.isFullScreen
+      ? document.exitFullscreen()
+      : videoElement.current.requestFullscreen();
+  };
+
   return {
     playerState,
     togglePlay,
@@ -69,6 +82,7 @@ const useVideoPlayer = (videoElement) => {
     handleVideoProgress,
     handleVideoSpeed,
     toggleMute,
+    toggleFullScreen,
   };
 };
 

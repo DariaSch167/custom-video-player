@@ -1,5 +1,5 @@
 import "./App.css";
-import VideoPlayer from "./components/VideoPlayerV2/VideoPlayerV2.jsx";
+import VideoPlayer from "./components/VideoPlayerV1/VideoPlayer.jsx";
 
 function App() {
   return (
